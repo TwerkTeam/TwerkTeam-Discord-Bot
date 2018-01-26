@@ -1,0 +1,21 @@
+{
+  "name": "twerk-team-automation",
+  "version": "1.0.0",
+  "description": "### Info This app should help automize how Twerk Team members become part of the streamer gallery. Right now this process is fully manually and I believe that this can become more automated.",
+  "main": "server.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "discord.js": "^11.2.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "ssh2-sftp-client": "^2.0.1",
+    "xss": "^0.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alec Dilanchian",
+  "license": "ISC"
+}
