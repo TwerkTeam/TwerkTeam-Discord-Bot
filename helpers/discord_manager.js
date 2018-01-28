@@ -13,7 +13,7 @@ client.on('ready', () => {
     if (process.env.NODE_ENV === 'dev') {
         setInterval(function() { 
             http.get('http://twerkteam-bot-dev.herokuapp.com');
-        }, 9000000);
+        }, (1000 * 60 * 20));
     }
 });
 
@@ -180,12 +180,12 @@ client.on('message', message => {
                 }
                 
                 if (!inImageUpdate) {
-                    message.reply(' looks like you are already on twerk.team!\n Please use a valid update command.');
+                    message.reply(' looks like you are already on twerk.team!\nPlease use a valid update command.');
                 }
             } else {
                 // Add path //
                 if (memberAdded) {
-                    message.reply(' looks like you are already on twerk.team!\n Please use an update command instead.');
+                    message.reply(' looks like you are already on twerk.team!\nPlease use a valid update command.');
                     return;
                 }
                 // Get content and split //
@@ -247,22 +247,22 @@ client.on('message', message => {
                 console.log('Checking to see if all content was provided...');
                 
                 if (channelName === '' && bio === '' && streamUrl === '') {
-                    message.reply('please use this format to submit your channel\n "Channel Name:"\n "Bio:"\n "Stream Link:"\n');
+                    message.reply(' try using this format:\n```Channel Name:\nBio:\nStream Link:```\n');
                     return;
                 }
                 
                 if (channelName === '') {
-                    message.reply('I couldn\'t find your channel name! Make sure to use "Channel Name:"');
+                    message.reply(' you forgot to provide your channel name!\nTry using this format:\n```Channel Name:\nBio:\nStream Link:```\n');
                     return;
                 }
                 
                 if (bio === '') {
-                    message.reply('I couldn\'t find your bio! Make sure to use "Bio:"');
+                    message.reply(' you forgot to provide your bio!\nTry using this format:\n```Channel Name:\nBio:\nStream Link:```\n');
                     return;
                 }
                 
                 if (streamUrl === '') {
-                    message.reply('I couldn\'t find your stream link! Make sure to use "Stream Link:"');
+                    message.reply(' you forgot to provide your stream link!\nTry using this format:\n```Channel Name:\nBio:\nStream Link:```\n');
                     return;
                 }
                 
@@ -301,17 +301,17 @@ client.on('message', message => {
                             console.log('Member has been written to listed-members file');
                         });
                         
-                        message.reply('Thanks for your submission!\n Keep Twerkin.');
+                        message.reply(' thanks for your submission!\nKeep Twerkin.');
                         return;
                     } else {
                         console.log('Attachment is not an image.');
-                        message.reply('please use .png, .jpeg, .jpg');
+                        message.reply(' please use .png, .jpeg, .jpg');
                         return;
                     }
                     
                     if (!imageProvided) {
                         console.log('There were no attachments.');
-                        message.reply(' looks like you didn\'t attach an image!\n Please submit again.');
+                        message.reply(' looks like you didn\'t attach an image!\nPlease submit again.');
                     }
                 });
             }

@@ -7,7 +7,7 @@ file is in the gitignore file and will not be committed to the repo if you make
 changes!
 
 The keys needed are:<br>
-`NODE_ENV=dev`<br>
+`NODE_ENV=local`<br>
 `DISCORD_CHANNEL_ID` (Channel ID you want the bot to listen to)<br>
 `BOT_TOKEN` (Token from Discord)<br>
 `FTP_HOST` (SFTP host name)<br>

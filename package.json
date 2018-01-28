@@ -1,7 +1,7 @@
 {
-  "name": "twerk-team-automation",
+  "name": "twerkteam-discord-bot",
   "version": "1.0.0",
-  "description": "### Info This app should help automize how Twerk Team members become part of the streamer gallery. Right now this process is fully manually and I believe that this can become more automated.",
+  "description": "TwerkTeam bot that will automate the process of uploading new members to the streamers gallery. With more to come ;)",
   "main": "server.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
