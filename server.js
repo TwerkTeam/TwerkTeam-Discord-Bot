@@ -5,7 +5,8 @@ var discord = require('./helpers/discord_manager.js');
 var server = express();
 
 // Server setup //
-server.use(bodyParser.json());
-server.listen('8080', function() {
-  console.log('***** Server listening to port 8080 *****');
-});
+// As of now this is not needed... Keeping here just in case //
+/* server.use(bodyParser.json());
+server.listen(process.env.PORT, '0.0.0.0', function() {
+    console.log('***** Server listening to port 8080 *****');
+}); */
