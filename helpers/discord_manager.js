@@ -44,6 +44,7 @@ client.on('message', message => {
                 !updateBio MyUpdatedBio ---> Change your bio.
                 !updateStreamLink MyUpdatedStreamLink ---> Change your stream url.
                 !updateImage *Attach Image* ---> Change your image.
+                !help ---> Get list of commands.
             `;
             message.reply(helpMessage);
             return;
@@ -172,12 +173,12 @@ client.on('message', message => {
                 }
                 
                 if (!inImageUpdate) {
-                    message.reply('Hmmm... Looks like you are already on twerk.team!\n Please use a valid update command.');
+                    message.reply(' looks like you are already on twerk.team!\n Please use a valid update command.');
                 }
             } else {
                 // Add path //
                 if (memberAdded) {
-                    message.reply('Hmmm... Looks like you are already on twerk.team!\n Please use an update command instead.');
+                    message.reply(' looks like you are already on twerk.team!\n Please use an update command instead.');
                     return;
                 }
                 // Get content and split //
@@ -303,7 +304,7 @@ client.on('message', message => {
                     
                     if (!imageProvided) {
                         console.log('There were no attachments.');
-                        message.reply('Hmmm... seems like you didn\'t attach an image!\n Please submit again.');
+                        message.reply(' looks like you didn\'t attach an image!\n Please submit again.');
                     }
                 });
             }
