@@ -4,10 +4,17 @@ const client = new Discord.Client();
 const generator = require('../helpers/html_generator.js');
 const xss = require('xss');
 const fs = require('fs');
+const http = require('http');
 
 // Get Discord client ready //
 client.on('ready', () => {
     console.log('Discord client is ready.');
+    // Keep Heroku Server On //
+    if (process.env.NODE_ENV === 'dev') {
+        setInterval(function() { 
+            http.get('http://twerkteam-bot-dev.herokuapp.com');
+        }, 3000);
+    }
 });
 
 // Test //
