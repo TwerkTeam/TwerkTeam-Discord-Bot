@@ -13,7 +13,7 @@ client.on('ready', () => {
     if (process.env.NODE_ENV === 'dev') {
         setInterval(function() { 
             http.get('http://twerkteam-bot-dev.herokuapp.com');
-        }, 3000);
+        }, 9000000);
     }
 });
 
