@@ -12,7 +12,7 @@ client.on('ready', () => {
     // Keep Heroku Server On //
     if (process.env.NODE_ENV === 'dev') {
         setInterval(function() { 
-            http.get('http://twerkteam-bot-dev.herokuapp.com');
+            http.get(process.env.HEROKU_URL);
         }, (1000 * 60 * 20));
     }
 });
@@ -124,12 +124,12 @@ client.on('message', message => {
 
                     if (originalContent !== '') {
                         console.log(originalContent);
-                        
+
                         // Bundle up object //
                         var updateData = {
                             'discordUsername': message.author.username,
                             'command': 'streamLink',
-                            'content': originalContent
+                            'content': urlGenerator(originalContent)
                         }
                         generator.updateMember(updateData);
                         
@@ -160,16 +160,23 @@ client.on('message', message => {
                                 attachmentUrl.search('.jpg') !== -1) {
                                     console.log('Image url: '+attachmentUrl);
                                     
-                                    // Bundle up object //
-                                    var updateData = {
-                                        'discordUsername': message.author.username,
-                                        'command': 'image',
-                                        'content': attachmentUrl
+                                    // Check width/height //
+                                    if (isValidImageSize(attachment.width, attachment.height)) {
+                                        // Bundle up object //
+                                        var updateData = {
+                                            'discordUsername': message.author.username,
+                                            'command': 'image',
+                                            'content': attachmentUrl
+                                        }
+                                        
+                                        // TODO: ADD PROMISES FOR BOT REPLY! //
+                                        generator.updateMember(updateData);
+                                        message.reply(' your image has been updated to: `'+attachment.filename+'`')
+                                        return;
+                                    } else {
+                                        message.reply(' your image was a bit to small!\nPlease upload an image with a minimum size of 500x500');
+                                        return;
                                     }
-                                    // TODO: ADD PROMISES FOR BOT REPLY! //
-                                    generator.updateMember(updateData);
-                                    message.reply(' your image has been updated to: `'+attachment.filename+'`')
-                                    return;
                             } else {
                                 console.log('Attachment is not an image.');
                                 message.reply(' please use .png, .jpeg, .jpg');
@@ -283,26 +290,32 @@ client.on('message', message => {
                         // We have an image attachment //
                         imageProvided = true;
                         
-                        // Creator Member Object //
-                        let twerkMember = {
-                            'discordUsername': message.author.username,
-                            'channelName': channelName,
-                            'bio': bio,
-                            'streamLink': streamUrl,
-                            'imageUrl': attachment.url 
+                        // Check width/height //
+                        if (isValidImageSize(attachment.width, attachment.height)) {
+                            // Creator Member Object //
+                            let twerkMember = {
+                                'discordUsername': message.author.username,
+                                'channelName': channelName,
+                                'bio': bio,
+                                'streamLink': urlGenerator(streamUrl),
+                                'imageUrl': attachment.url 
+                            }
+                            
+                            // Time to create HTML //
+                            generator.createHtml(twerkMember)
+                            
+                            // Write channleName to text file for later checks //
+                            fs.appendFile('./assets/listed-members.txt', message.author.username+'\n', error => {
+                                if (error) throw error;
+                                console.log('Member has been written to listed-members file');
+                            });
+                            
+                            message.reply(' thanks for your submission!\nKeep Twerkin.');
+                            return;
+                        } else {
+                            message.reply(' your image was a bit to small!\nPlease upload an image with a minimum size of 500x500');
+                            return;
                         }
-                        
-                        // Time to create HTML //
-                        generator.createHtml(twerkMember)
-                        
-                        // Write channleName to text file for later checks //
-                        fs.appendFile('./assets/listed-members.txt', message.author.username+'\n', error => {
-                            if (error) throw error;
-                            console.log('Member has been written to listed-members file');
-                        });
-                        
-                        message.reply(' thanks for your submission!\nKeep Twerkin.');
-                        return;
                     } else {
                         console.log('Attachment is not an image.');
                         message.reply(' please use .png, .jpeg, .jpg');
@@ -324,5 +337,26 @@ function cloneString(text) {
     return (' ' + text).slice(1)
 }
 
-// Login with token //
+//-- Valid Image Size --//
+function isValidImageSize(imageWidth, imageHeight) {
+    if (imageWidth < 500 || imageHeight < 500) {
+        return false;
+    }
+    
+    return true; 
+}
+
+//-- Valid URL --//
+function urlGenerator(url) {
+    // Check to see if there is a valid url path () //
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        console.log('Valid url, we dont need nothing!');
+        return url;
+    }
+    
+    console.log('Non-valid Url... Creating new one.');
+    return 'http://'+url;
+}
+
+//-- Login with token --//
 client.login(process.env.BOT_TOKEN);
