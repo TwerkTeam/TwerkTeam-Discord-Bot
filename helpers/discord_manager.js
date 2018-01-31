@@ -10,7 +10,8 @@ const http = require('http');
 client.on('ready', () => {
     console.log('Discord client is ready.');
     // Keep Heroku Server On //
-    if (process.env.NODE_ENV === 'dev') {
+    if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'production') {
+        console.log('Ping timer is set.');
         setInterval(function() { 
             http.get(process.env.HEROKU_URL);
         }, (1000 * 60 * 20));
