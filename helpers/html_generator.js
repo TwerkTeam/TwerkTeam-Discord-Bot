@@ -79,7 +79,7 @@ module.exports = {
                 console.log('Streamer gallery file updated.');
                 
                 // Write to web server //
-                sftp.put('./assets/streamergallery.html', './web/dev.twerk.team/public_html/streamergallery.html');
+                sftp.put('./assets/streamergallery.html', process.env.FTP_FILEPATH);
             });
         });      
     },
@@ -117,7 +117,7 @@ module.exports = {
                     console.log('Streamer gallery file updated.');
                     
                     // Write to web server //
-                    sftp.put('./assets/streamergallery.html', './web/dev.twerk.team/public_html/streamergallery.html');
+                    sftp.put('./assets/streamergallery.html', process.env.FTP_FILEPATH);
                 });
             }
             
@@ -148,7 +148,7 @@ module.exports = {
                     console.log('Streamer gallery file updated.');
                     
                     // Write to web server //
-                    sftp.put('./assets/streamergallery.html', './web/dev.twerk.team/public_html/streamergallery.html');
+                    sftp.put('./assets/streamergallery.html', process.env.FTP_FILEPATH);
                 });
             }
             
@@ -166,7 +166,7 @@ module.exports = {
                     console.log('Streamer gallery file updated.');
                     
                     // Write to web server //
-                    sftp.put('./assets/streamergallery.html', './web/dev.twerk.team/public_html/streamergallery.html');
+                    sftp.put('./assets/streamergallery.html', process.env.FTP_FILEPATH);
                 });
             }
             
@@ -184,7 +184,7 @@ module.exports = {
                     console.log('Streamer gallery file updated.');
                     
                     // Write to web server //
-                    sftp.put('./assets/streamergallery.html', './web/dev.twerk.team/public_html/streamergallery.html');
+                    sftp.put('./assets/streamergallery.html', process.env.FTP_FILEPATH);
                 });
             }
         });   
