@@ -31,7 +31,7 @@ module.exports = {
                 <div class="nk-gallery-item-description">
                     <h4>// STREAMER CHANNEL //</h4>
                     <p>
-                        // STREAMER BIO // <a href="// STREAMER LINK //">// STREAMER CHANNEL NAME //</a>
+                        // STREAMER BIO // <a target="_blank" href="// STREAMER LINK //">// STREAMER CHANNEL NAME //</a>
                     </p>
                 </div>
             </div>
@@ -62,7 +62,7 @@ module.exports = {
                         // STREAMER BIO //
                         '<p class="twerker-bio">\n'+
                             // STREAMER LINK //
-                            twerkMember.bio+' | <a class="twerker-stream-link" href='+twerkMember.streamLink+'>'+'Check out '+twerkMember.channelName+'</a> |\n'+
+                            twerkMember.bio+' | <a target="_blank" class="twerker-stream-link" href='+twerkMember.streamLink+'>'+'Check out '+twerkMember.channelName+'</a> |\n'+
                         '</p>\n'+
                     '</div>\n'+
                 '</div>\n'+
@@ -136,7 +136,7 @@ module.exports = {
                 
                 currentBio.replaceWith(
                     '<p class="twerker-bio">'+
-                        updateData.content+' <a class="twerker-stream-link" href='+currentStreamUrl+'>'+currentChannelName+'</a>'+
+                        updateData.content+' <a target="_blank" class="twerker-stream-link" href='+currentStreamUrl+'>'+currentChannelName+'</a>'+
                     '</p>'
                 );
                 
