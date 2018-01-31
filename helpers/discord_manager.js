@@ -40,20 +40,23 @@ client.on('message', message => {
         if (tempContent.startsWith('!help')) {
             console.log('In help section.');
             // List commands //
-            var helpMessage = `Welcome to the TwerkTeam! I'm here to help you be part of our website!\n
-                To get started use one of these commands:\n
-                Channel Name: MyChannelName
-                Bio: MyBio
-                Stream Link: http://www.MyStreamLink.com
-                *Attach Image*\n
-                ---------------------------\n
-                !updateChannel MyUpdatedChannel ---> Change your channel name.
-                !updateBio MyUpdatedBio ---> Change your bio.
-                !updateStreamLink MyUpdatedStreamLink ---> Change your stream url.
-                !updateImage *Attach Image* ---> Change your image.
-                !help ---> Get list of commands.
+            var helpMessageP1 = 
+            `Welcome to the TwerkTeam! 
+            I'm going to help make you part of our website.
+            To get started here is the perfect command:
+            \`\`\`Channel Name: MyChannelName\nBio: MyBio\nStream Link: http://www.MyStreamLink.com\n*Attach Image*\`\`\`
             `;
-            message.reply(helpMessage);
+            var helpMessageP2 = 
+            `I also can update your current profile by using one of these commands:
+            \`!updateChannel MyUpdatedChannel\` ---> Update your channel name.
+            \`!updateBio MyUpdatedBio\` ---> Update your bio.
+            \`!updateStreamLink MyUpdatedStreamLink\` ---> Update your stream url.
+            \`!updateImage *Attach Image*\` ---> Update your image.
+            \`!help\` ---> Get list of commands.`
+            
+            message.reply(helpMessageP1);
+            message.reply(helpMessageP2);
+            
             return;
         }
         
@@ -143,15 +146,15 @@ client.on('message', message => {
                     console.log('User updating image...');
                     
                     // !updateImage //
-                    var imageAttachment = message.attachments;
+                    var imageAttachments = message.attachments;
 
-                    if (imageAttachment.size === 0) {
+                    if (imageAttachments.size === 0) {
                         console.log('No image attached.');
                         message.reply(' you forgot to attach an image!\nPlease use command `!updateImage` and attach an image');
                         return;
                     } else {
                         inImageUpdate = true;
-                        imageAttachment.forEach((attachment) => {
+                        imageAttachments.forEach((attachment) => {
                             var attachmentUrl = attachment.url;
                             
                             // Check to see if image, else send error message //
@@ -195,6 +198,7 @@ client.on('message', message => {
                     message.reply(' looks like you are already on twerk.team!\nPlease use a valid update command.');
                     return;
                 }
+                
                 // Get content and split //
                 var contentArray = message.content.split('\n');
                 var channelName = '';
@@ -276,10 +280,18 @@ client.on('message', message => {
                 console.log('Channel Name: '+channelName);
                 console.log('Bio: '+bio);
                 console.log('Stream Url: '+streamUrl);
+                console.log('Checking for attachments...');
                 
                 // Get attachment from message, check for image //
-                var imageAttachment = message.attachments;
-                imageAttachment.forEach((attachment) => {
+                var imageAttachments = message.attachments;
+                
+                if (imageAttachments.size === 0) {
+                    console.log('Image is not attached.');
+                    message.reply(' looks like you didn\'t attach an image!\nPlease submit again with an image that is 500x500.');
+                    return;
+                }
+                
+                imageAttachments.forEach((attachment) => {
                     var attachmentUrl = attachment.url;
                             
                     // Check to see if image, else send error message //
