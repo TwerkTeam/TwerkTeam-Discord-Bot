@@ -41,12 +41,12 @@ client.on('message', message => {
             console.log('In help section.');
             // List commands //
             var helpMessageP1 = 
-            `Welcome to the TwerkTeam Discord Server! I'm here to help make you part of our website.
+            ` welcome to the TwerkTeam Discord Server! I'm here to help make you part of our website.
             Here is the perfect command to get started:
             \`\`\`Channel Name: MyChannelName\nBio: MyBio\nStream Link: http://www.MyStreamLink.com\n*Attach Image*\`\`\``;
             
             var helpMessageP2 = 
-            `Already a part of the TwerkTeam site? Let me help you update your content by using one of these commands:
+            ` already a part of the TwerkTeam site? Let me help you update your content by using one of these commands:\n
             \`!updateChannel MyUpdatedChannel\` ---> Update your channel name.
             \`!updateBio MyUpdatedBio\` ---> Update your bio.
             \`!updateStreamLink MyUpdatedStreamLink\` ---> Update your stream url.
