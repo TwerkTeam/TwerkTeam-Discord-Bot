@@ -286,7 +286,7 @@ client.on('message', message => {
                 
                 if (imageAttachments.size === 0) {
                     console.log('Image is not attached.');
-                    message.reply(' looks like you didn\'t attach an image!\nPlease submit again with an image that is 500x500.');
+                    message.reply(' looks like you didn\'t attach an image!\nPlease submit again with an image that has a minimum size of 500x500.');
                     return;
                 }
                 
