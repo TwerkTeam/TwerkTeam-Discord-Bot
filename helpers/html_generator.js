@@ -21,7 +21,7 @@ module.exports = {
         <div class="col-lg-3 col-md-6">
             <div id="// DISCORD USERNAME //"class="nk-gallery-item-box">
                 // STREAMER IMAGE //
-                <a href="" class="nk-gallery-item" data-size="1016x572">
+                <a href="" class="nk-gallery-item" data-size="510x500">
                     <div class="nk-gallery-item-overlay">
                         <span class="ion-eye"></span>
                     </div>
@@ -49,7 +49,7 @@ module.exports = {
             '<div class="col-lg-3 col-md-6">\n'+
                 '<div id="'+twerkMember.discordUsername+'" class="nk-gallery-item-box">\n'+
                     // STREAMER IMAGE //
-                    '<a href='+twerkMember.imageUrl+' class="nk-gallery-item twerker-image" data-size="1016x572">\n'+
+                    '<a href='+twerkMember.imageUrl+' class="nk-gallery-item twerker-image" data-size="510x500">\n'+
                         '<div class="nk-gallery-item-overlay">\n'+
                             '<span class="ion-eye"></span>\n'+
                         '</div>\n'+
@@ -62,7 +62,7 @@ module.exports = {
                         // STREAMER BIO //
                         '<p class="twerker-bio">\n'+
                             // STREAMER LINK //
-                            twerkMember.bio+' <a class="twerker-stream-link" href='+twerkMember.streamLink+'>'+twerkMember.channelName+'</a>\n'+
+                            twerkMember.bio+' | <a class="twerker-stream-link" href='+twerkMember.streamLink+'>'+'Check out '+twerkMember.channelName+'</a> |\n'+
                         '</p>\n'+
                     '</div>\n'+
                 '</div>\n'+
