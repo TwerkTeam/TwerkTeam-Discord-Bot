@@ -15,8 +15,10 @@ The keys needed are:<br>
 `FTP_HOST` (SFTP host name)<br>
 `FTP_USER` (SFTP username)<br>
 `FTP_PW` (SFTP PW)<br>
-`FTP_FILEPATH` (FTP filepath depending on dev or production)<br>
+`FTP_FILEPATH` (FTP file path depending on dev or production)<br>
 `HEROKU_URL` (Heroku url to ping server to keep alive)<br>
+`FTP_FILEPATH_GALLERY` (FTP file path to streamergallery file depending on dev or production)<br>
+`FTP_FILEPATH_MEMBERS` (FTP file path to listed-members file depending on dev or production)
 
 ## Run The Bot
 Open a command line in the directory of the bot and run the command `npm install && npm start`
