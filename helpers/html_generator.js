@@ -25,9 +25,12 @@ module.exports = {
             
             // Pipe readable stream into current file //
             stream.pipe(writeStream);
-            console.log('Current streamergallery written to local memory.');
             
-            callback(true);
+            // On pipe end, send call back //
+            stream.on('end', function() {
+                console.log('Current streamergallery written to local memory.');
+                callback(true);
+            });
         }).catch((error) => {
             console.log(error);
             callback(false);
@@ -43,9 +46,12 @@ module.exports = {
             
             // Pipe readable stream into current file //
             stream.pipe(writeStream);
-            console.log('Current members list written to local memory.');
             
-            callback(true);
+            // On pipe end, send call back //
+            stream.on('end', function() {
+                console.log('Current members list written to local memory.');
+                callback(true);
+            });
         }).catch((error) => {
             console.log(error);
             callback(false);
