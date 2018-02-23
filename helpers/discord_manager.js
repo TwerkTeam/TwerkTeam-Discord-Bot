@@ -6,6 +6,10 @@ const xss = require('xss');
 const fs = require('fs');
 const http = require('http');
 
+//-- Commands --//
+const cmdManager = require('../helpers/commands.js');
+const config = require('../config.js');
+
 // Get Discord client ready //
 client.on('ready', () => {
     console.log('Discord client is ready.');
@@ -16,10 +20,33 @@ client.on('ready', () => {
             http.get(process.env.HEROKU_URL);
         }, (1000 * 60 * 20));
     }
+    
+    // Set Bot Commands //
+    console.log('Setting bot commands...');
+    cmdManager.setCommands(client);
 });
 
-// Test //
+
 client.on('message', message => {
+    if (message.channel.id === process.env.DISCORD_CHANNEL_ID && !message.author.bot) {
+        /* 
+            EXAMPLE:
+            !help someArgsAfter
+        */
+        
+        // Create temp prop to manipulate //
+        var tempContent = message.content.toLowerCase();
+        
+        // Check for help command //
+        if (tempContent.startsWith('!help')) {
+            console.log('In !help commands.')
+            var command = client.commands.get('help');
+            if (command) command.run(client, message);
+        }        
+    }
+});
+
+/* client.on('message', message => {
     // Channel id for bot-test-channel in adilanchian server//
     if (message.channel.id === process.env.DISCORD_CHANNEL_ID && !message.author.bot) {
         /* 
@@ -29,7 +56,7 @@ client.on('message', message => {
             streamUrl
             image
             *There should be an image attached with this message as well*
-        */
+        
         
         // Clone & lower //
         var originalContent = xss.escapeHtml(cloneString(message.content));
@@ -350,7 +377,7 @@ client.on('message', message => {
             }
         });
     }
-});
+}); */
 
 //-- MAD PROPS TO KociQQ --//
 function cloneString(text) {
